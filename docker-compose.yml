@@ -1,0 +1,50 @@
+version: '3.4'
+
+networks:
+  backend:
+
+
+services:
+  sqldata:
+    container_name: sqldb
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+        - SA_PASSWORD=Komron#0708
+        - ACCEPT_EULA=Y
+    volumes:
+        - ./dbdata:/var/opt/mssql/data
+       # - database:/var/opt/mssql/data
+    ports:
+       - 1450:1433
+    networks:
+      - backend
+  najotnurapi:
+    container_name: najotnur-api
+    image: ${DOCKER_REGISTRY-}najotnurapi
+    build:
+      context: .
+      dockerfile: src/ServiceOneNajotNur/NajotNur.Api/Dockerfile
+    networks:
+      - backend
+    environment:
+        - DB_HOST=sqldata
+        - DB_NAME=NajotNurDB
+        - DB_SA_PASSWORD=Komron#0708
+    depends_on:
+        - sqldata
+    ports:
+      - 8000:80
+  apigateway:
+    container_name: apigateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: src/ApiGateway/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 8080:80
+ 
+  
+# volumes:
+#   database:

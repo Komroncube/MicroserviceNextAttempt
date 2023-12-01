@@ -1,0 +1,32 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Users",
+      //"DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "najotnurapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/users",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Users",
+      //"DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7240
+        }
+      ],
+      "UpstreamPathTemplate": "/localusers",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:8087"
+  }
+}
