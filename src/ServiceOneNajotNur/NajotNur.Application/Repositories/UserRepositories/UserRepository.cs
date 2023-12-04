@@ -26,9 +26,29 @@ namespace NajotNur.Application.Repositories.UserRepositories
 
         }
 
+        public ValueTask CreateUserAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<bool> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<User> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async ValueTask<IEnumerable<User>> GetUsersAsync()
         {
             return await _najotNurDbContext.Users.ToListAsync();
+        }
+
+        public ValueTask<bool> UpdateAsync(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

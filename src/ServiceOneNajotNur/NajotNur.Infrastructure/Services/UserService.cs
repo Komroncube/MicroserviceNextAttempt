@@ -19,7 +19,7 @@ namespace NajotNur.Infrastructure.Services
 
         public async ValueTask CreateUserAsync(User user)
         {
-            await _userRepository.CreateUser(user);
+            await _userRepository.CreateUserAsync(user);
         }
 
         public async ValueTask<IEnumerable<User>> GetUsersAsync()
